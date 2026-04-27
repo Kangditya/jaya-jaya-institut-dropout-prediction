@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.jar
+*.trace.db
+submission.zip
+plugins/
+screenshot.py
+setup_metabase.py
+students.db
