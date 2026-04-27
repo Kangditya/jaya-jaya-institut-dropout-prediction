@@ -63,7 +63,11 @@ Kemudian akses dashboard di `http://localhost:3000/dashboard/2`.
 
 ## Menjalankan Sistem Machine Learning
 
-Prototype sistem machine learning dibuat menggunakan Streamlit. Untuk menjalankan prototype:
+Prototype sistem machine learning dibuat menggunakan Streamlit dan telah di-deploy ke Streamlit Community Cloud.
+
+**🔗 Link Prototype:** [https://jaya-jaya-institut-dropout-prediction.streamlit.app](https://jaya-jaya-institut-dropout-prediction.streamlit.app)
+
+Untuk menjalankan prototype secara lokal:
 
 ```bash
 # 1. Pastikan semua dependencies terinstal
