@@ -12,8 +12,8 @@ Jaya Jaya Institut merupakan institusi pendidikan perguruan yang telah berdiri s
 
 ### Cakupan Proyek
 
-1. Analisis eksplorasi data (EDA) untuk memahami karakteristik siswa dropout vs graduate vs enrolled.
-2. Pembangunan model machine learning (Random Forest & Gradient Boosting) untuk prediksi dropout.
+1. Analisis eksplorasi data (EDA) untuk memahami karakteristik siswa dropout vs graduate.
+2. Pembangunan model machine learning (Random Forest & Gradient Boosting) untuk prediksi dropout (klasifikasi biner: Dropout vs Graduate).
 3. Pembuatan business dashboard untuk monitoring performa siswa.
 4. Deployment prototype sistem prediksi menggunakan Streamlit.
 
@@ -23,11 +23,30 @@ Sumber data: [UCI Machine Learning Repository - Predict students' dropout and ac
 
 Setup environment:
 
+**Setup Environment - Anaconda:**
 ```bash
-# Install dependencies
+conda create --name main-ds python=3.9
+conda activate main-ds
 pip install -r requirements.txt
+```
 
-# Jalankan Streamlit app
+**Setup Environment - Shell/Terminal:**
+```bash
+pip install pipenv
+pipenv install
+pipenv shell
+```
+
+**Atau menggunakan venv:**
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# .venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+```
+
+Jalankan Streamlit app:
+```bash
 streamlit run app.py
 ```
 
@@ -80,7 +99,7 @@ streamlit run app.py
 Cara penggunaan:
 1. Isi data siswa pada sidebar (informasi demografis, akademik, finansial, dan performa semester).
 2. Klik tombol "Prediksi" untuk melihat hasil prediksi.
-3. Sistem akan menampilkan status prediksi (Dropout/Enrolled/Graduate) beserta probabilitasnya.
+3. Sistem akan menampilkan status prediksi (Dropout/Graduate) beserta probabilitasnya.
 
 ## Conclusion
 
@@ -88,17 +107,19 @@ Berdasarkan analisis yang telah dilakukan, diperoleh kesimpulan sebagai berikut:
 
 1. **Tingkat Dropout**: Dari 4.424 siswa, 32.1% (1.421 siswa) mengalami dropout, 17.9% (794 siswa) masih enrolled, dan 49.9% (2.209 siswa) berhasil graduate.
 
-2. **Faktor Utama Dropout**: Faktor yang paling berpengaruh terhadap status dropout siswa adalah:
+2. **Data Preparation**: Untuk pemodelan, hanya data siswa dengan status **Dropout** (1.421) dan **Graduate** (2.209) yang digunakan (total 3.630 siswa). Data siswa dengan status **Enrolled** (794) tidak dilibatkan dalam training karena belum memiliki label akhir. Data Enrolled dimanfaatkan pada tahap inferensi untuk memprediksi kemungkinan status akhir mereka.
+
+3. **Faktor Utama Dropout**: Faktor yang paling berpengaruh terhadap status dropout siswa adalah:
    - **Performa akademik semester 1 & 2**: Jumlah mata kuliah yang lulus (approved) dan nilai rata-rata (grade) di kedua semester merupakan indikator terkuat. Siswa dropout cenderung memiliki jumlah MK lulus yang sangat rendah (median 0-2 MK).
-   - **Status pembayaran SPP (Tuition fees)**: 87% siswa yang tidak membayar SPP tepat waktu mengalami dropout.
+   - **Status pembayaran SPP (Tuition fees)**: Siswa yang tidak membayar SPP tepat waktu memiliki risiko dropout yang sangat tinggi.
    - **Usia saat enrollment**: Siswa yang lebih tua saat mendaftar memiliki risiko dropout yang lebih tinggi.
    - **Admission grade**: Siswa dengan nilai masuk yang lebih rendah cenderung memiliki risiko dropout lebih tinggi.
 
-3. **Model Machine Learning**: Random Forest Classifier dipilih sebagai model terbaik dengan accuracy 77.7%. Model ini mampu mengidentifikasi siswa dropout dengan precision 81% dan recall 77%.
+4. **Model Machine Learning**: Random Forest Classifier dipilih sebagai model terbaik dengan accuracy **90.8%**. Model ini mampu mengidentifikasi siswa dropout dengan precision **95%** dan recall **81%**, serta siswa graduate dengan precision **89%** dan recall **97%**.
 
-4. **Perbedaan Gender**: Siswa laki-laki memiliki tingkat dropout yang lebih tinggi (45%) dibandingkan siswa perempuan (25%).
+5. **Perbedaan Gender**: Siswa laki-laki memiliki tingkat dropout yang lebih tinggi dibandingkan siswa perempuan.
 
-5. **Pengaruh Beasiswa**: Penerima beasiswa memiliki tingkat dropout yang jauh lebih rendah (~10%) dibandingkan non-penerima beasiswa (~39%).
+6. **Pengaruh Beasiswa**: Penerima beasiswa memiliki tingkat dropout yang jauh lebih rendah dibandingkan non-penerima beasiswa.
 
 ### Rekomendasi Action Items
 

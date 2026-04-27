@@ -131,9 +131,6 @@ if st.sidebar.button("🔍 Prediksi", use_container_width=True):
         if predicted_label == "Dropout":
             st.error(f"⚠️ **Status Prediksi: {predicted_label}**")
             st.markdown("Siswa ini **berpotensi tinggi untuk dropout**. Perlu diberikan bimbingan khusus segera.")
-        elif predicted_label == "Enrolled":
-            st.warning(f"📝 **Status Prediksi: {predicted_label}**")
-            st.markdown("Siswa ini masih **aktif terdaftar**. Perlu monitoring berkelanjutan.")
         else:
             st.success(f"✅ **Status Prediksi: {predicted_label}**")
             st.markdown("Siswa ini diprediksi akan **berhasil lulus**.")
@@ -157,7 +154,7 @@ else:
     with col1:
         st.metric("Model", "Random Forest")
     with col2:
-        st.metric("Accuracy", "77.7%")
+        st.metric("Accuracy", "90.8%")
     with col3:
         st.metric("Jumlah Fitur", "36")
     
